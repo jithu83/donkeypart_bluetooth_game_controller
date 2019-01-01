@@ -88,7 +88,7 @@ class BluetoothGameController(BluetoothDevice):
             pprint.pprint(self.device.capabilities(verbose=True))
 
         self.func_map = {
-            'LEFT_STICK_X': self.update_angle,
+            'RIGHT_STICK_X': self.update_angle,
             'LEFT_STICK_Y': self.update_throttle,
             'B': self.toggle_recording,
             'A': self.toggle_drive_mode,
