@@ -7,6 +7,7 @@ import evdev
 from evdev import ecodes
 import yaml
 import pprint
+import Adafruit_PCA9685
 
 class BluetoothDevice:
     device = None
@@ -65,8 +66,12 @@ class BluetoothGameController(BluetoothDevice):
         self.drive_mode_toggle = cycle(['user', 'local_angle', 'local'])
         self.drive_mode = next(self.drive_mode_toggle)
 
-        self.recording_toggle = cycle([True, False])
+        self.recording_toggle = cycle([False, True])
         self.recording = next(self.recording_toggle)
+
+        self.led_pwm_toggle = cycle([0, 4095])
+        self.led_PCA9685 = Adafruit_PCA9685.PCA9685()
+        self.led_PCA9685.set_pwm(12,0, next(self.led_pwm_toggle))
 
         if config_path is None:
             config_path = self._get_default_config_path()
@@ -196,6 +201,7 @@ class BluetoothGameController(BluetoothDevice):
     def toggle_recording(self, val):
         if val == 1:
             self.recording = next(self.recording_toggle)
+            self.led_PCA9685.set_pwm(12,0, next(self.led_pwm_toggle))
         return
 
     def toggle_drive_mode(self, val):
