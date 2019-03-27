@@ -6,6 +6,7 @@ import argparse
 import evdev
 from evdev import ecodes
 import yaml
+import pprint
 
 class BluetoothDevice:
     device = None
@@ -82,6 +83,9 @@ class BluetoothGameController(BluetoothDevice):
             print(self.device)
         else:
             self.device = event_input_device
+
+        if self.verbose == True:
+            pprint.pprint(self.device.capabilities(verbose=True))
 
         self.func_map = {
             'LEFT_STICK_X': self.update_angle,
