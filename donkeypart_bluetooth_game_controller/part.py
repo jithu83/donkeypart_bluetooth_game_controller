@@ -47,7 +47,6 @@ class BluetoothGameController(BluetoothDevice):
     """
     Generator of cordinates of a bouncing moving square for simulations.
     """
-
     def __init__(self, event_input_device=None, config_path=None, device_search_term=None, verbose=False):
 
 
@@ -89,12 +88,12 @@ class BluetoothGameController(BluetoothDevice):
             'LEFT_STICK_Y': self.update_throttle,
             'B': self.toggle_recording,
             'A': self.toggle_drive_mode,
-            'PAD_UP': self.increment_throttle_scale,
-            'PAD_DOWN': self.decrement_throttle_scale,
+            'RIGHT_TOP_TRIGGER': self.increment_throttle_scale,
+            'LEFT_TOP_TRIGGER': self.decrement_throttle_scale,
         }
 
     def _get_default_config_path(self):
-        return os.path.join(os.path.dirname(__file__), 'wiiu_config.yml')
+        return os.path.join(os.path.dirname(__file__), 'logitech_f710_config.yml')
 
     def _load_config(self, config_path):
         with open(config_path, 'r') as f:
