@@ -23,7 +23,7 @@ button_map:
   547: 'PAD_RIGHT'
   546: 'PAD_LEFT'
   544: 'PAD_UP'
-  548: 'PAD_DOWN'
+  545: 'PAD_DOWN'
 
 
 joystick_max_value: 1280
